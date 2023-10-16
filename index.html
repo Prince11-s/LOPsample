@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String to Image</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .options{
+        display: flex;
+        margin-left: 35%;
+        margin-top: 20px;
+        padding-bottom: 40px;
+        text-align: center;
+        align-content: space-between;
+        
+    }
+    .option1{
+        margin-right: 70px;
+    }
+    .outimg{
+        display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+select{
+    size-adjust: 32px;
+}
+    
+</style>
+<body>
+    <div class="options">
+    <div class="option1">
+        <h2 for="current location" class="CL">Current Location</h2>
+    <select name="current location" id="option1" class="crt_loc">
+        <option value="CL_B1_Block">B1 Block</option>
+        <option value="CL_C1_Block">C1 Block</option>
+        <option value="CL_A1_Block">A1 Block</option>
+        <option value="CL_D_Block">D Block</option>
+        <option value="CL_Library">Library</option>
+    </select><br>
+    </div>
+    <div class="option2">
+        <h2 for="Destination" class="DE">Destination</h2>
+    <select name="Destination" id="option2" class="des">
+        <option value="DT_B1_Block">B1 Block</option>
+        <option value="DT_C1_Block">C1 Block</option>
+        <option value="DT_A1_Block">A1 Block</option>
+        <option value="DT_D_Block">D Block</option>
+        <option value="DT_Library">Library</option>
+    </select>
+    </div>
+    </div>
+    <div id="imageContainer">
+        <img src="" id="outputImage" alt="Image" class="outimg">
+    </div>
+    <script>
+        function updateImage() {
+            var select1Value = document.getElementById("option1").value;
+            var select2Value = document.getElementById("option2").value;
+            var inputString = select1Value + select2Value;
+            var image = document.getElementById("outputImage");
+            var imageContainer = document.getElementById("imageContainer");
+
+            // Define mapping of strings to image sources
+            var imageSources = {
+                "CL_B1_BlockDT_B1_Block":"img1.jpg",
+                "CL_B1_BlockDT_C1_Block":"img2.jpg",
+                "CL_B1_BlockDT_A1_Block":"img3.jpg",
+                "CL_B1_BlockDT_D_Block":"img4.jpg",
+                "CL_B1_BlockDT_Library":"img5.jpg",
+
+                "CL_C1_BlockDT_B1_Block":"img6.jpg",
+                "CL_C1_BlockDT_C1_Block":"img7.jpg",
+                "CL_C1_BlockDT_A1_Block":"img8.jpg",
+                "CL_C1_BlockDT_D_Block":"img9.jpg",
+                "CL_C1_BlockDT_Library":"img1.jpg",
+
+                "CL_A1_BlockDT_B1_Block":"img2.jpg",
+                "CL_A1_BlockDT_C1_Block":"img3.jpg",
+                "CL_A1_BlockDT_A1_Block":"img4.jpg",
+                "CL_A1_BlockDT_D_Block":"img5.jpg",
+                "CL_A1_BlockDT_Library":"img6.jpg",
+
+                "CL_D_BlockDT_B1_Block":"img7.jpg",
+                "CL_D_BlockDT_C1_Block":"img8.jpg",
+                "CL_D_BlockDT_A1_Block":"img9.jpg",
+                "CL_D_BlockDT_D_Block":"img1.jpg",
+                "CL_D_BlockDT_Library":"img2.jpg",
+
+                "CL_LibraryDT_B1_Block":"img3.jpg",
+                "CL_LibraryDT_C1_Block":"img4.jpg",
+                "CL_LibraryDT_A1_Block":"img5.jpg",
+                "CL_LibraryDT_D_Block":"img6.jpg",
+                "CL_LibraryDT_Library":"img7.jpg",
+            };
+
+            // Check if the input string is in the mapping
+            if (inputString in imageSources) {
+                image.src = imageSources[inputString];
+                imageContainer.style.display = "block"; // Show the image container
+            } else {
+                imageContainer.style.display = "none"; // Hide the image container
+            }
+        }
+
+        // Add event listeners to the select tags to update the image
+        document.getElementById("option1").addEventListener("change", updateImage);
+        document.getElementById("option2").addEventListener("change", updateImage);
+        
+        // Initial image update
+        updateImage();
+    </script>
+</body>
+</html>
