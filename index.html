@@ -16,6 +16,7 @@
         padding-bottom: 40px;
         text-align: center;
         align-content: space-between;
+        
     }
     .option1{
         margin-right: 70px;
@@ -36,6 +37,8 @@ select{
     <div class="option1">
         <h2 for="current location" class="CL">Current Location</h2>
     <select name="current location" id="option1" class="crt_loc">
+        <option value="CL_Select">Select</option>
+        <option value="CL_C_Block">C Block</option>
         <option value="CL_B1_Block">B1 Block</option>
         <option value="CL_C1_Block">C1 Block</option>
         <option value="CL_A1_Block">A1 Block</option>
@@ -46,6 +49,8 @@ select{
     <div class="option2">
         <h2 for="Destination" class="DE">Destination</h2>
     <select name="Destination" id="option2" class="des">
+        <option value="DT_Select">Select</option>
+        <option value="DT_C_Block">C Block</option>
         <option value="DT_B1_Block">B1 Block</option>
         <option value="DT_C1_Block">C1 Block</option>
         <option value="DT_A1_Block">A1 Block</option>
@@ -56,7 +61,6 @@ select{
     </div>
     <div id="imageContainer">
         <img src="" id="outputImage" alt="Image" class="outimg">
-
     </div>
     <script>
         function updateImage() {
@@ -68,65 +72,42 @@ select{
 
             // Define mapping of strings to image sources
             var imageSources = {
-                "CL_B1_BlockDT_B1_Block":"img1.jpg",
-                "CL_B1_BlockDT_C1_Block":"img2.jpg",
-                "CL_B1_BlockDT_A1_Block":"img3.jpg",
-                "CL_B1_BlockDT_D_Block":"img4.jpg",
-                "CL_B1_BlockDT_Library":"img5.jpg",
+                "CL_SelectDT_Select":"NGP Map.png",
+                "CL_B1_BlockDT_C1_Block":"NGP Map.png",
+                "CL_B1_BlockDT_A1_Block":"NGP Map.png",
+                "CL_B1_BlockDT_D_Block":"NGP Map.png",
+                "CL_B1_BlockDT_Library":"B1toD1.png",
+                "CL_B1_BlockDT_C_Block":"",
 
-                "CL_C1_BlockDT_B1_Block":"img6.jpg",
-                "CL_C1_BlockDT_C1_Block":"img7.jpg",
-                "CL_C1_BlockDT_A1_Block":"img8.jpg",
-                "CL_C1_BlockDT_D_Block":"img9.jpg",
-                "CL_C1_BlockDT_Library":"img1.jpg",
+                "CL_C1_BlockDT_B1_Block":"NGP Map.png",
+                "CL_C1_BlockDT_A1_Block":"NGP Map.png",
+                "CL_C1_BlockDT_D_Block":"NGP Map.png",
+                "CL_C1_BlockDT_Library":"C1toD1.png",
+                "CL_C1_BlockDT_C_Block":"",
 
-                "CL_A1_BlockDT_B1_Block":"img2.jpg",
-                "CL_A1_BlockDT_C1_Block":"img3.jpg",
-                "CL_A1_BlockDT_A1_Block":"img4.jpg",
-                "CL_A1_BlockDT_D_Block":"img5.jpg",
-                "CL_A1_BlockDT_Library":"img6.jpg",
+                "CL_A1_BlockDT_B1_Block":"NGP Map.png",
+                "CL_A1_BlockDT_C1_Block":"NGP Map.png",
+                "CL_A1_BlockDT_D_Block":"NGP Map.png",
+                "CL_A1_BlockDT_Library":"A1toD1.png",
+                "CL_A1_BlockDT_C_Block":"",
 
-                "CL_D_BlockDT_B1_Block":"img7.jpg",
-                "CL_D_BlockDT_C1_Block":"img8.jpg",
-                "CL_D_BlockDT_A1_Block":"img9.jpg",
-                "CL_D_BlockDT_D_Block":"img1.jpg",
-                "CL_D_BlockDT_Library":"img2.jpg",
+                "CL_D_BlockDT_B1_Block":"NGP Map.png",
+                "CL_D_BlockDT_C1_Block":"NGP Map.png",
+                "CL_D_BlockDT_A1_Block":"NGP Map.png",
+                "CL_D_BlockDT_Library":"DtoD1.png",
+                "CL_D_BlockDT_C_Block":"",
 
-                "CL_LibraryDT_B1_Block":"img3.jpg",
-                "CL_LibraryDT_C1_Block":"img4.jpg",
-                "CL_LibraryDT_A1_Block":"img5.jpg",
-                "CL_LibraryDT_D_Block":"img6.jpg",
-                "CL_LibraryDT_Library":"img7.jpg",
+                "CL_LibraryDT_B1_Block":"NGP Map.png",
+                "CL_LibraryDT_C1_Block":"NGP Map.png",
+                "CL_LibraryDT_A1_Block":"NGP Map.png",
+                "CL_LibraryDT_D_Block":"NGP Map.png",
+                "CL_LibraryDT_C_Block":"NGP Map.png",
 
-                "DT_B1_BlockCL_B1_Block":"img1.jpg",
-                "DT_C1_BlockCL_C1_Block":"img2.jpg",
-                "DT_A1_BlockCL_A1_Block":"img3.jpg",
-                "DT_D_BlockCL_D_Block":"img4.jpg",
-                "DT_LibraryCL_Library":"img5.jpg",
-                                
-                "DT_B1_BlockCL_B1_Block":"img6.jpg",
-                "DT_C1_BlockCL_C1_Block":"img7.jpg",
-                "DT_A1_BlockCL_A1_Block":"img8.jpg",
-                "DT_D_BlockCL_D_Block":"img9.jpg",
-                "DT_LibraryCL_Library":"img1.jpg",
-
-                "DT_B1_BlockCL_B1_Block":"img2.jpg",
-                "DT_C1_BlockCL_C1_Block":"img3.jpg",
-                "DT_A1_BlockCL_A1_Block":"img4.jpg",
-                "DT_D_BlockCL_D_Block":"img5.jpg",
-                "DT_LibraryCL_Library":"img6.jpg",
-
-                "DT_B1_BlockCL_B1_Block":"img7.jpg",
-                "DT_C1_BlockCL_C1_Block":"img8.jpg",
-                "DT_A1_BlockCL_A1_Block":"img9.jpg",
-                "DT_D_BlockCL_D_Block":"img1.jpg",
-                "DT_LibraryCL_Library":"img3.jpg",
-
-                "DT_B1_BlockCL_B1_Block":"img2.jpg",
-                "DT_C1_BlockCL_C1_Block":"img4.jpg",
-                "DT_A1_BlockCL_A1_Block":"img5.jpg",
-                "DT_D_BlockCL_D_Block":"img6.jpg",
-                "DT_LibraryCL_Library":"img7.jpg",
+                "CL_C_BlockDT_B1_Block":"NGP Map.png",
+                "CL_C_BlockDT_C1_Block":"NGP Map.png",
+                "CL_C_BlockDT_A1_Block":"NGP Map.png",
+                "CL_C_BlockDT_Library":"CtoD1.png",
+                "CL_C_BlockDT_C_Block":"",
             };
 
             // Check if the input string is in the mapping
@@ -144,7 +125,6 @@ select{
         
         // Initial image update
         updateImage();
-    
     </script>
 </body>
 </html>
