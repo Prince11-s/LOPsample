@@ -1,6 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String to Image</title>
+</head>
+<style>
+    
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(169, 220, 250);
+    }
+        .options{
+            background-color: rgb(77, 185, 228);
+            padding: 10px;
+            display: flex;
+            margin: 25px;
+            margin-top: 35px;
+            padding-bottom: 20px;
+            border-radius: 10px;
+            
+        }
+        .option1{
+            padding-right: 55px;
+        }
+        .option2{
+
+        }
+        .CL,.DE{
+            font-size:16px;
+            text-align: justify;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1.3px;
+
+        }
+        
+        .st{
+            background-color:  rgb(77, 185, 228);
+            border: none;
+            color: white;
+            margin-left: 285px;
+            margin-top: -15px;
+            padding: 15px 32px;
+            text-align: center;
+            width: 40px;
+            text-decoration: none;
+            display: flex;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+        .outimg{
+            width: 350px;
+            display: block;
+            margin: auto;
+            margin-top: 25px;
+            border-color: rgb(77, 185, 228);
+            border-style: solid;
+            box-shadow: 5px 5px 0 0  rgb(36, 89, 110);
+            box-sizing: border-box;
+            
+        }
+    
+</style>
+<body>
+<div class="options">
+    <div class="option1">
+        <h2 for="option1" class="CL">Current Location</h2>
+        <select name="current location" id="option1" class="crt_loc">
+            <option value="CL_Select">Select</option>
+            <option value="CL_A1">A1 Block</option>
+            <option value="CL_B1">B1 Block</option>
+            <option value="CL_C">C Block</option>
+            <option value="CL_C1">C1 Block</option>
+            <option value="CL_D">D Block</option>
+            <option value="CL_D1">D1 Block</option>
+            <option value="CL_Library">Library</option>
+        </select><br>
+    </div>
+
+    <div class="option2">
+        <h2 for="option2" class="DE">Destination</h2>
+        <select name="Destination" id="option2" class="des">
+            <option value="DT_Select">Select</option>
+            <option value="DT_A1">A1 Block</option>
+            <option value="DT_B1">B1 Block</option>
+            <option value="DT_C">C Block</option>
+            <option value="DT_C1">C1 Block</option>
+            <option value="DT_D">D Block</option>
+            <option value="DT_D1">D1 Block</option>
+            <option value="DT_Library">Library</option>
+        </select>
+    </div>
+</div>
+<div class="st">
+    <button class="start" id="go" onclick="updateimage()">Start</button>
+</div>
+<div id="imageContainer">
+    <img src="NGP Map.png" id="outputImage" alt="Image" class="outimg">
+</div>
+
+<div id="show_C1toD1" style="display: none;">
+    <p class="C1toD1" id="C1toD1">Walk straight</p>
+</div>
+
+<script>
+    function go(){
+        
+    document.getElementById("option1").addEventListener("change", updateimage);
+    document.getElementById("option2").addEventListener("change", updateimage);
+
+        updateimage(); 
+    }
+    var inputString = "";
+    var imageSources = {
+        "CL_SelectDT_Select": "NGP Map.png",
+
+        "CL_B1DT_C1": "NGP Map.png",
+        "CL_B1DT_A1": "NGP Map.png",
+        "CL_B1DT_Library": "B1toD1.png",
+        "CL_B1DT_D1":"B1toD1.png",
+        "CL_B1DT_C": "NGP Map.png",
+
+        "CL_C1DT_B1": "NGP Map.png",
+        "CL_C1DT_A1": "NGP Map.png",
+        "CL_C1DT_Library": "C1toD1.png",
+        "CL_C1DT_D1":"C1toD1.png",
+        "CL_C1DT_C": "NGP Map.png",
+
+        "CL_A1DT_B1": "NGP Map.png",
+        "CL_A1DT_C1": "NGP Map.png",
+        "CL_A1DT_Library": "A1toD1.png",
+        "CL_A1DT_D1":"A1toD1.png",
+        "CL_A1DT_D":"NGP Map.png",
+        "CL_A1DT_C": "NGP Map.png",
+
+        "CL_DDT_B1": "NGP Map.png",
+        "CL_DDT_C1": "NGP Map.png",
+        "CL_DDT_A1": "NGP Map.png",
+        "CL_DDT_Library": "DtoD1.png",
+        "CL_DDT_D1":"DtoD1.png",
+        "CL_DDT_C": "NGP Map.png",
+
+        "CL_LibraryDT_B1": "NGP Map.png",
+        "CL_LibraryDT_C1": "NGP Map.png",
+        "CL_LibraryDT_A1": "NGP Map.png",
+        "CL_LibraryDT_C": "CtoD1.png",
+        "CL_LibraryDT_D": "CtoD1.png",
+
+        "CL_CDT_B1": "NGP Map.png",
+        "CL_CDT_C1": "NGP Map.png",
+        "CL_CDT_A1": "NGP Map.png",
+        "CL_CDT_Library": "CtoD1.png",
+        "CL_CDT_D1":"CtoD1.png",
+        
+    };
+
+    function updateimage() {
+        var select1Value = document.getElementById("option1").value;
+        var select2Value = document.getElementById("option2").value;
+        inputString = select1Value + select2Value;
+        var image = document.getElementById("outputImage");
+        var imageContainer = document.getElementById("imageContainer");
+
+        if (inputString in imageSources) {
+            image.src = imageSources[inputString];
+            imageContainer.style.display = "block";
+            var element = document.getElementById('go');
+            element.style.display = 'block';
+        } else {
+            imageContainer.style.display = "none";
+        }
+    }
+    
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
     <title>String to Image</title>
 </head>
 <style>
