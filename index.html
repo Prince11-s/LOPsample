@@ -12,6 +12,9 @@
         font-family: Arial, Helvetica, sans-serif;
         background-color: rgb(169, 220, 250);
     }
+    @media screen and (max-width:600px) {
+        
+    
         .options{
             background-color: rgb(77, 185, 228);
             padding: 10px;
@@ -62,7 +65,7 @@
             box-sizing: border-box;
             
         }
-    
+    }
 </style>
 <body>
 <div class="options">
@@ -175,135 +178,5 @@
     }
     
 </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>String to Image</title>
-</head>
-<style>
-    body{
-        margin: 0;
-        padding: 0%;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    .options{
-        display: flex;
-        margin-left: 35%;
-        margin-top: 20px;
-        padding-bottom: 40px;
-        text-align: center;
-        align-content: space-between;
-        
-    }
-    .option1{
-        margin-right: 70px;
-    }
-    .outimg{
-        display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-select{
-    size-adjust: 32px;
-}
-    
-</style>
-<body>
-    <div class="options">
-    <div class="option1">
-        <h2 for="current location" class="CL">Current Location</h2>
-    <select name="current location" id="option1" class="crt_loc">
-        <option value="CL_Select">Select</option>
-        <option value="CL_C_Block">C Block</option>
-        <option value="CL_B1_Block">B1 Block</option>
-        <option value="CL_C1_Block">C1 Block</option>
-        <option value="CL_A1_Block">A1 Block</option>
-        <option value="CL_D_Block">D Block</option>
-        <option value="CL_Library">Library</option>
-    </select><br>
-    </div>
-    <div class="option2">
-        <h2 for="Destination" class="DE">Destination</h2>
-    <select name="Destination" id="option2" class="des">
-        <option value="DT_Select">Select</option>
-        <option value="DT_C_Block">C Block</option>
-        <option value="DT_B1_Block">B1 Block</option>
-        <option value="DT_C1_Block">C1 Block</option>
-        <option value="DT_A1_Block">A1 Block</option>
-        <option value="DT_D_Block">D Block</option>
-        <option value="DT_Library">Library</option>
-    </select>
-    </div>
-    </div>
-    <div id="imageContainer">
-        <img src="" id="outputImage" alt="Image" class="outimg">
-    </div>
-    <script>
-        function updateImage() {
-            var select1Value = document.getElementById("option1").value;
-            var select2Value = document.getElementById("option2").value;
-            var inputString = select1Value + select2Value;
-            var image = document.getElementById("outputImage");
-            var imageContainer = document.getElementById("imageContainer");
-
-            // Define mapping of strings to image sources
-            var imageSources = {
-                "CL_SelectDT_Select":"NGP Map.png",
-                "CL_B1_BlockDT_C1_Block":"NGP Map.png",
-                "CL_B1_BlockDT_A1_Block":"NGP Map.png",
-                "CL_B1_BlockDT_D_Block":"NGP Map.png",
-                "CL_B1_BlockDT_Library":"B1toD1.png",
-                "CL_B1_BlockDT_C_Block":"",
-
-                "CL_C1_BlockDT_B1_Block":"NGP Map.png",
-                "CL_C1_BlockDT_A1_Block":"NGP Map.png",
-                "CL_C1_BlockDT_D_Block":"NGP Map.png",
-                "CL_C1_BlockDT_Library":"C1toD1.png",
-                "CL_C1_BlockDT_C_Block":"",
-
-                "CL_A1_BlockDT_B1_Block":"NGP Map.png",
-                "CL_A1_BlockDT_C1_Block":"NGP Map.png",
-                "CL_A1_BlockDT_D_Block":"NGP Map.png",
-                "CL_A1_BlockDT_Library":"A1toD1.png",
-                "CL_A1_BlockDT_C_Block":"",
-
-                "CL_D_BlockDT_B1_Block":"NGP Map.png",
-                "CL_D_BlockDT_C1_Block":"NGP Map.png",
-                "CL_D_BlockDT_A1_Block":"NGP Map.png",
-                "CL_D_BlockDT_Library":"DtoD1.png",
-                "CL_D_BlockDT_C_Block":"",
-
-                "CL_LibraryDT_B1_Block":"NGP Map.png",
-                "CL_LibraryDT_C1_Block":"NGP Map.png",
-                "CL_LibraryDT_A1_Block":"NGP Map.png",
-                "CL_LibraryDT_D_Block":"NGP Map.png",
-                "CL_LibraryDT_C_Block":"NGP Map.png",
-
-                "CL_C_BlockDT_B1_Block":"NGP Map.png",
-                "CL_C_BlockDT_C1_Block":"NGP Map.png",
-                "CL_C_BlockDT_A1_Block":"NGP Map.png",
-                "CL_C_BlockDT_Library":"CtoD1.png",
-                "CL_C_BlockDT_C_Block":"",
-            };
-
-            // Check if the input string is in the mapping
-            if (inputString in imageSources) {
-                image.src = imageSources[inputString];
-                imageContainer.style.display = "block"; // Show the image container
-            } else {
-                imageContainer.style.display = "none"; // Hide the image container
-            }
-        }
-
-        // Add event listeners to the select tags to update the image
-        document.getElementById("option1").addEventListener("change", updateImage);
-        document.getElementById("option2").addEventListener("change", updateImage);
-        
-        // Initial image update
-        updateImage();
-    </script>
 </body>
 </html>
